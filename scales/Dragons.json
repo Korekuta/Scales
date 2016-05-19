@@ -1,0 +1,490 @@
+{
+	"Albino": {
+		"description": "You can see the baby dragon curled up inside this translucent egg.",
+		"location": [3, 4, 5, 6]
+	},
+	"Anagallis": {
+		"description": "This delicately patterned egg is sitting in the sunshine.",
+		"location": [2, 3, 4]
+	},
+	"Astrapi Xenowyrm": {
+		"description": "Mana courses throughout this glassy egg.",
+		"location": [5]
+	},
+	"Balloon": {
+		"description": "This light egg is floating in the air.",
+		"location": [1, 3, 4, 5]
+	},
+	"Black": {
+		"description": "This egg has a faint green glow around it.",
+		"location": [1, 2, 3, 4, 5, 6]
+	},
+	"Black Capped Teimarr": {
+		"description": "This egg has a black cap.",
+		"location": [1]
+	},
+	"Black Tea": {
+		"description": "This egg has a faintly exotic scent.",
+		"location": [2]
+	},
+	"Blacktip": {
+		"description": "This egg is off-white in color and smells a bit like salt.",
+		"location": [1]
+	},
+	"Bleeding Moon": {
+		"description": "This egg shines brilliantly in moonlight, and is covered in red spots.",
+		"location": [5]
+	},
+	"Blue-Banded": {
+		"description": "This egg is covered in thick blue stripes.",
+		"location": [5]
+	},
+	"Blue Dino": {
+		"description": "This egg looks like it doesn't belong; it is brightly colored with white spots. It's much lighter than the other eggs.",
+		"location": [4]
+	},
+	"Blusang Lindwurm": {
+		"description": "This egg smells faintly like brine.",
+		"location": [1]
+	},
+	"Bright-Brested Wyvern": {
+		"description": "This egg is covered in speckles.",
+		"location": [4]
+	},
+	"Brimstone": {
+		"description": "This egg smells rather rancid.",
+		"location": [2, 6]
+	},
+	"Brute": {
+		"description": "This egg is unusually large and heavy.",
+		"location": [5]
+	},
+	"Canopy": {
+		"description": "This egg is hidden by some leaves.",
+		"location": [4]
+	},
+	"Carmine Wyvern": {
+		"description": "This pink and red egg wobbles occasionally.",
+		"location": [4]
+	},
+	"Cassare": {
+		"description": "This egg makes you feel a bit uneasy.",
+		"location": [1, 2, 3, 4, 5, 6]
+	},
+	"Cheese": {
+		"description": "This egg is soft and smells uncannily like cheese.",
+		"location": [1, 2, 3, 4, 5, 6]
+	},
+	"Chicken": {
+		"description": "This egg is much smaller than the others.",
+		"location": [1, 2, 3, 4, 5, 6]
+	},
+	"Chrono Xenowyrm": {
+		"description": "Mana courses throughout this glassy egg.",
+		"location": [3]
+	},
+	"Coastal Waverunner": {
+		"description": "This egg reminds you of the sea.",
+		"location": [1]
+	},
+	"Copper": {
+		"description": "This egg gleams with a reddish shine.",
+		"location": [1, 2, 3, 4, 5, 6]
+	},
+	"Crimson Flare Pygmy": {
+		"description": "This egg is tiny and brightly colored.",
+		"location": [4, 6]
+	},
+	"Dark Green": {
+		"description": "This egg is sitting in a patch of grass and small flowers even though there's no sun in the cave.",
+		"location": [3, 4]
+	},
+	"Dark Myst Pygmy": {
+		"description": "This tiny egg is mysterious and dark.",
+		"location": [3, 4]
+	},
+	"Daydream": {
+		"description": "This egg is sitting on a cloud.",
+		"location": [1, 3, 4]
+	},
+	"Day/Night Glory Drake": {
+		"description": "This egg displays the colors of both dawn and dusk.",
+		"location": [3]
+	},
+	"Deep Sea": {
+		"description": "This egg appears to be covered in scales.",
+		"location": [1]
+	},
+	"Dorsal": {
+		"description": "This egg has multiple bands of color on it.",
+		"location": [4]
+	},
+	"Duotone": {
+		"description": "This egg can't seem to make up its mind on what color it is.",
+		"location": [1, 2, 3, 4, 5, 6]
+	},
+	"Electric": {
+		"description": "Electric sparks dance across the surface of this egg.",
+		"location": [5]
+	},
+	"Ember": {
+		"description": "This egg is really hot.",
+		"location": [6]
+	},
+	"Falconiform Wyvern": {
+		"description": "Cold flames dance across the surface of this egg.",
+		"location": [6]
+	},
+	"Fever Wyvern": {
+		"description": "This egg is patterned with an orange flare.",
+		"location": [4]
+	},
+	"Flamingo Wyvern": {
+		"description": "It's bright. And pink.",
+		"location": [1, 4]
+	},
+	"Frostbite": {
+		"description": "Frost is creeping over this cold egg.",
+		"location": [5]
+	},
+	"Gaia Xenowyrm": {
+		"description": "Mana courses throughout this glassy egg.",
+		"location": [4]
+	},
+	"Gemshard": {
+		"description": "This egg is encrusted with colorful gemstones.",
+		"location": [4]
+	},
+	"Gilded Bloodscale": {
+		"description": "This egg glitters oddly in the light.",
+		"location": [6]
+	},
+	"Glaucus Drake": {
+		"description": "This striped egg feels moist.",
+		"location": [1, 6]
+	},
+	"Gold": {
+		"description": "This egg is very reflective, almost metallic-looking.",
+		"location": [1, 2, 3, 4, 5, 6]
+	},
+	"Gold-Horned Tangar": {
+		"description": "This egg has bright orange and green markings.",
+		"location": [4]
+	},
+	"Golden Wyvern": {
+		"description": "This egg shimmers like gold.",
+		"location": [5]
+	},
+	"Gray": {
+		"description": "This egg is surrounded by fog.",
+		"location": [1, 2, 3, 4, 5, 6]
+	},
+	"Greater Spotted Drake": {
+		"description": "This egg is speckled with rosette-like markings.",
+		"location": [3]
+	},
+	"Green": {
+		"description": "This egg is sitting in a pile of small pebbles.",
+		"location": [3, 6]
+	},
+	"Green Dino": {
+		"description": "This egg looks like it doesn't belong; it is brightly colored with white spots.",
+		"location": [4]
+	},
+	"Guardian": {
+		"description": "This egg is sitting in front of the others.",
+		"location": [5, 6]
+	},
+	"Harvest": {
+		"description": "This heavy egg feels slightly warm.",
+		"location": [3, 5]
+	},
+	"Hellfire Wyvern": {
+		"description": "This egg radiates the heat of a fell flame.",
+		"location": [4, 6]
+	},
+	"Hooktalon": {
+		"description": "The surface of this egg is rough and sharp.",
+		"location": [2]
+	},
+	"Horse": {
+		"description": "This egg has strange markings on it.",
+		"location": [4]
+	},
+	"Howler Drake": {
+		"description": "You hear strange noises coming from inside this egg.",
+		"location": [4]
+	},
+	"Ice": {
+		"description": "This egg has icicles forming on it.",
+		"location": [5]
+	},
+	"Imperial Fleshcrowne": {
+		"description": "This egg is hidden in the trees.",
+		"location": [1, 2, 3, 4, 5, 6]
+	},
+	"Lumina": {
+		"description": "This egg shines brightly in the sunlight.",
+		"location": [1, 2, 3, 4, 5, 6]
+	},
+	"Lunar Herald": {
+		"description": "This metallic egg shows faint iridescence in moonlight.",
+		"location": [2, 5, 6]
+	},
+	"Magelight Pygmy Wyvern": {
+		"description": "This small egg is engulfed in a cool, purple flame.",
+		"location": [5]
+	},
+	"Mageia Xenowyrm": {
+		"description": "Mana courses throughout this glassy egg.",
+		"location": [2]
+	},
+	"Magi": {
+		"description": "This egg has an orange aura radiating from it.",
+		"location": [1, 2, 3, 4, 5, 6]
+	},
+	"Magma": {
+		"description": "This egg is almost too hot to touch.",
+		"location": [6]
+	},
+	"Mint": {
+		"description": "This egg is hidden behind the others, as if it is shy.",
+		"location": [1, 3, 4, 5, 6]
+	},
+	"Misfit Pygmy": {
+		"description": "This tiny egg has crazy swirls on it.",
+		"location": [4, 6]
+	},
+	"Moonstone/Sunstone": {
+		"description": "This egg resembles a glowing stone.",
+		"location": [2]
+	},
+	"Nebula": {
+		"description": "This egg has a brilliant radiance coming off of it.",
+		"location": [2, 5]
+	},
+	"Neotropical": {
+		"description": "This egg has strange yellow stripes.",
+		"location": [4]
+	},
+	"Nhiostrife Wyvern": {
+		"description": "This dull purple egg has two bright stripes on it.",
+		"location": [5]
+	},
+	"Nilia Pygmy": {
+		"description": "This tiny egg is heavier than you expected.",
+		"location": [4, 5]
+	},
+	"Nocturne": {
+		"description": "This egg appears to be made of limestone.",
+		"location": [3, 5]
+	},
+	"Ochredrake": {
+		"description": "This egg has strange markings on it.",
+		"location": [3]
+	},
+	"Olive": {
+		"description": "This egg smells musty, like rotting leaves.",
+		"location": [3]
+	},
+	"Paper": {
+		"description": "This egg is tiny and made out of several pieces of paper folded together.",
+		"location": [1, 2, 3, 4, 5, 6]
+	},
+	"Pillow": {
+		"description": "This egg has a velvety texture.",
+		"location": [5]
+	},
+	"Pink": {
+		"description": "It's bright. And pink.",
+		"location": [1, 2, 3, 4, 5, 6]
+	},
+	"Plated Colossus": {
+		"description": "This massive egg is covered with thick plates.",
+		"location": [3, 4]
+	},
+	"Purple": {
+		"description": "Wow, purple isn't a color of egg you expected to see.",
+		"location": [1, 2, 3, 4, 5, 6]
+	},
+	"Purple Dino": {
+		"description": "This egg looks like it doesn't belong; it is brightly colored with white spots. It's much lighter than the other eggs.",
+		"location": [4]
+	},
+	"Pygmy": {
+		"description": "This egg is so tiny you almost didn't see it.",
+		"location": [3, 4, 5]
+	},
+	"Pyralspite (Almandine)": {
+		"description": "This egg feels like polished stone.",
+		"location": [5]
+	},
+	"Pyralspite (Pyrope)": {
+		"description": "This egg feels like polished stone.",
+		"location": [6]
+	},
+	"Pyralspite (Spessartine)": {
+		"description": "This egg feels like polished stone.",
+		"location": [1]
+	},
+	"Pyro Xenowyrm": {
+		"description": "Mana courses throughout this glassy egg.",
+		"location": [6]
+	},
+	"Red": {
+		"description": "This egg is rather warm.",
+		"location": [1, 2, 6]
+	},
+	"Red Dino": {
+		"description": "This egg looks like it doesn't belong; it is brightly colored with white spots. It's much warmer than the rest of the eggs.",
+		"location": [4]
+	},
+	"Red-finned Tidal": {
+		"description": "This egg is wet from the waves and has bright red stripes.",
+		"location": [1]
+	},
+	"Ridgewing": {
+		"description": "A cool mountain breeze blows around this egg.",
+		"location": [5]
+	},
+	"Royal Blue": {
+		"description": "This egg shines in the moonlight.",
+		"location": [5]
+	},
+	"Royal Crimson": {
+		"description": "This large egg is a dark crimson color.",
+		"location": [6]
+	},
+	"Seasonal": {
+		"description": "The markings on this egg match the weather outside.",
+		"location": [3, 5]
+	},
+	"Seawyrm Pygmy": {
+		"description": "This tiny egg shines like a pearl.",
+		"location": [1]
+	},
+	"Seragamma Wyvern": {
+		"description": "This plain-looking egg has faint speckles.",
+		"location": [6]
+	},
+	"Silver": {
+		"description": "This egg gives off a beautiful glow.",
+		"location": [1, 2, 3, 4, 5, 6]
+	},
+	"Skywing": {
+		"description": "This egg has strange markings on it.",
+		"location": [1]
+	},
+	"Speckle-Throated": {
+		"description": "This egg has a rough—yet shiny—shell.",
+		"location": [5]
+	},
+	"Spirit Ward": {
+		"description": "This egg glows from within.",
+		"location": [3, 5]
+	},
+	"Spitfire": {
+		"description": "This egg has brightly colored markings on it.",
+		"location": [2]
+	},
+	"Spotted Greenwing": {
+		"description": "This egg is covered in bright spots.",
+		"location": [3]
+	},
+	"Stone": {
+		"description": "This egg is heavy and rough, as if it were made out of rock.",
+		"location": [1, 2, 5, 6]
+	},
+	"Storm": {
+		"description": "This egg is surrounded by fog.",
+		"location": [1, 2, 3, 4, 5, 6]
+	},
+	"Striped": {
+		"description": "This egg has brightly colored markings on it.",
+		"location": [3, 4]
+	},
+	"Striped River": {
+		"description": "A small puddle of condensation has collected under this egg.",
+		"location": [3]
+	},
+	"Sunrise/Sunset": {
+		"description": "This egg is glowing as brightly as the sun.",
+		"location": [1, 5]
+	},
+	"Sunsong Amphiptere": {
+		"description": "This egg changes colors in the sunlight.",
+		"location": [4, 5]
+	},
+	"Sunstone": {
+		"description": "This egg resembles a glowing stone.",
+		"location": [2]
+	},
+	"Swallowtail": {
+		"description": "This egg has a very thin shell.",
+		"location": [3]
+	},
+	"Terrae": {
+		"description": "This egg is a lush green hue.",
+		"location": [3, 6]
+	},
+	"Thalassa Xenowyrm": {
+		"description": "Mana courses throughout this glassy egg.",
+		"location": [1]
+	},
+	"Thunder": {
+		"description": "Whenever you go near this egg, your hair stands on end.",
+		"location": [2]
+	},
+	"Tri-Horn Wyvern": {
+		"description": "This brown egg is covered in intricate designs.",
+		"location": [5]
+	},
+	"Tsunami Wyvern": {
+		"description": "This egg is rocking back and forth in a puddle, creating small waves.",
+		"location": [1]
+	},
+	"Turpentine": {
+		"description": "This egg smells strongly of turpentine.",
+		"location": [2]
+	},
+	"Two-Headed": {
+		"description": "This egg is split down the middle into two colors.",
+		"location": [1, 2, 3, 4, 5, 6]
+	},
+	"Two-headed Lindwurm": {
+		"description": "This opalescent egg shimmers in the moonlight.",
+		"location": [3, 5]
+	},
+	"Undine": {
+		"description": "There is a thin layer of moisture coating this egg.",
+		"location": [3, 5]
+	},
+	"Water": {
+		"description": "This egg is sitting in a shallow puddle.",
+		"location": [1]
+	},
+	"Water Walker": {
+		"description": "This egg seems to be floating on a puddle.",
+		"location": [1, 3, 4]
+	},
+	"Waterhorse": {
+		"description": "This egg is slimy and blue.",
+		"location": [1]
+	},
+	"Whiptail": {
+		"description": "This egg shakes from time to time, as if it is eager to hatch.",
+		"location": [3]
+	},
+	"White": {
+		"description": "This egg has a very clean look; it's completely devoid of dirt and scratches.",
+		"location": [1, 2, 3, 4, 5, 6]
+	},
+	"Yellow Dino": {
+		"description": "This egg looks like it doesn't belong; it is brightly colored with white spots. It's much heavier than the other eggs.",
+		"location": [4]
+	},
+	"Yellow-Crowned": {
+		"description": "The air shimmers around this egg, as if from heat.",
+		"location": [2]
+	}
+}
