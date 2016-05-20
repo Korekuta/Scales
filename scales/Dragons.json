@@ -7,6 +7,10 @@
 		"description": "This delicately patterned egg is sitting in the sunshine.",
 		"location": [2, 3, 4]
 	},
+  "Antarean": {
+		"description": "This egg is surrounded by mysterious, reflective dust.",
+		"location": [2]
+	},
 	"Astrapi Xenowyrm": {
 		"description": "Mana courses throughout this glassy egg.",
 		"location": [5]
@@ -69,6 +73,10 @@
 	},
 	"Cassare": {
 		"description": "This egg makes you feel a bit uneasy.",
+		"location": [1, 2, 3, 4, 5, 6]
+	},
+  "Celestial": {
+		"description": "This translucent egg shines like starlight.",
 		"location": [1, 2, 3, 4, 5, 6]
 	},
 	"Cheese": {
@@ -231,7 +239,7 @@
 		"description": "This metallic egg shows faint iridescence in moonlight.",
 		"location": [2, 5, 6]
 	},
-	"Magelight Pygmy Wyvern": {
+	"Magelight Pygmy": {
 		"description": "This small egg is engulfed in a cool, purple flame.",
 		"location": [5]
 	},
@@ -355,6 +363,10 @@
 		"description": "This large egg is a dark crimson color.",
 		"location": [6]
 	},
+  "Sapphire": {
+    "description": "This egg looks like a beautiful blue stone.",
+    "location": [1, 2, 3, 4, 5, 6]
+  },
 	"Seasonal": {
 		"description": "The markings on this egg match the weather outside.",
 		"location": [3, 5]

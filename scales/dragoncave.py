@@ -4,130 +4,106 @@ from json import load
 from requests import Session
 from sys import stdout
 
-""" Dragon """
-
-class Dragon(object):
-
-  def __init__(self, id = None):
-    self.exists = False
-    if id is not None: self.set(id)
-    
-  def set(self, id, user = None):
-    """
-    Defines the object based on a dragon's information retrieved from it's page.
-    
-    Args:
-      id - The identifier of the dragon to retrieve data from.
-      user - The active user session to execute the action on.
-    
-    Returns:
-      bool - True if dragon is found, False otherwise.    
-    """
-    if user is None: user = User()
-    dragon = user.session.get("http://dragcave.net/view/" + id)
-    source = dragon.text.encode(stdout.encoding, errors="replace")
-    if b"alt='Fog'/><br/>" in source:
-      self.logger.warn("'" + id + "' seems to be fogged/hidden.")
-    elif b"<a href='/wilderness'>Wild Egg</a>" in source:
-      self.logger.warn("'" + id + "' seems to be an unclaimed egg.")
-    if b"Clicks:" in source:
-      self.exists = True
-      self.id = id
-      self.name = re.search(b'Dragon Cave - Viewing Dragon: (.*?)<', source).group(1).decode("utf-8")
-      self.clicks = int(re.search(b'Clicks:<\/b>(.*?)<', source).group(1).decode("utf-8").replace(",", ""))
-      self.viewsAll = int(re.search(b'Overall views: <\/span>(.*?)<', source).group(1).decode("utf-8").replace(",", "")) 
-      self.viewsUnique = int(re.search(b'Unique views: <\/span>(.*?)<', source).group(1).decode("utf-8").replace(",", ""))
-      if b'Children:' in source:
-        self.children = [ ] # Children IDs
-      if b'Father:' in source:
-        self.father = re.search(b'Father:</b><a href="\/view\/(.*?)"', source).group(1).decode("utf-8")
-      if b'Gender:' in source:
-        self.gender = re.search(b'Gender:<\/b>(.*?)<', source).group(1).decode("utf-8")
-      if b'Grew up on:' in source:
-        self.grew = re.search(b'Grew up on:<\/b>(.*?)<', source).group(1).decode("utf-8")
-      if b'Hatched on:' in source:
-        self.hatched = re.search(b'Hatched on:<\/b>(.*?)<', source).group(1).decode("utf-8")
-      if b'Mother:' in source:
-        self.mother = re.search(b'Mother:<\/b><a href="\/view\/(.*?)"', source).group(1).decode("utf-8")
-      if b'Owner:' in source:
-        self.owner = re.search(b'Owner:<\/b><a href="\/user\/(.*?)">', source).group(1).decode("utf-8")
-      if b'Laid on:' in source:
-        self.created = re.search(b'Laid on:<\/b>(.*?)<', source).group(1).decode("utf-8")
-      else:
-        self.created = re.search(b'Stolen on:<\/b>(.*?)<', source).group(1).decode("utf-8")
-      if b'<b>Breed:' in source:
-        self.breed = re.search(b'Breed:</b><a href="\/dragonopedia\/(.*?)">(.*?)<', source).group(2).decode("utf-8") 
-      else:
-        self.breed = "Unknown"
-    else:
-      self.exists = False
-    return self.exists
+""" Game """
   
-  def exists(self):
-    """ Returns whether the code attached to the object exists or not. """
-    return self.exists
-  
-  def take(self, user = None):
-    """
-    Returns whether or not an egg was successfully taken.
+class Game(object):
+
+  def __init__(self):
+    self.logger = logging.getLogger("scales")
+    self.dragons = self.load_json("scales/dragons.json")
+
+  def get_dragons(self):
+    return self.dragons
     
-    Args:
-      user - The active user session to execute the action on.
-      
-    Returns:
-      bool - True if successful, False otherwise.
-    """
-    take = session.get("http://dragcave.net/get/" + self.id)
-    source = take.text.encode(stdout.encoding, errors="replace")
-    if b"<img src=\"/image/" + self.id + "/1\" alt=\"Adopt one today!\"/" in source:
-      self.logger.info("You managed to grab the egg (" + self.id + ").")
+  def load_json(self, file):
+    """ Returns a JSON object from a file loaded in. """
+    dragons = None
+    try:
+      dragons = load(open(file))
+    except Exception:
+      self.logger.warn("Unable to load json (" + file + ").")    
+    return dragons
+
+""" Cave """
+  
+class Cave(object):
+
+  def __init__(self, code = 0):
+    self.id = 0
+    self.source = None
+    self.eggs = [ ]
+    self.set_code(code)
+  
+  def set_code(self, code):
+    """ Sets the id for the cave object if given a valid code. """
+    if 0 < code < 7:
+      self.id = code
       return True
-    elif b"You are already overburdened " in source:
-      self.logger.warn("You have already met the egg limit.")
-      return False
-    else:
-      self.logger.warn("You were unable to grab the egg.")
-      return False
+    return False
   
-  def click(self, user = None):
-    """
-    Attempts to emulate clicking on a link to visit a dragon's page.
-    """
-    if self.exists:
-      if user is None: user = User()
-      user.session.headers.update({"referer": "http://dragcave.net/user/" + user})
-      user.session.get("http://dragcave.net/view/" + id)
-      user.session.headers.update({"referer": "http://dragcave.net/view/" + id})
-      user.session.get("http://dragcave.net/click/" + id)
+  def get_code(self):
+    return self.id
+  
+  def get_eggs(self):
+    return self.eggs
+  
+  def get_source(self):
+    return self.source
+  
+  def get_name(self):
+    """ Returns the str name associated with the cave object's identifier. """
+    if self.id == 0: return None
+    if self.id == 1: return "Coast"
+    if self.id == 2: return "Desert"
+    if self.id == 3: return "Forest"
+    if self.id == 4: return "Jungle"
+    if self.id == 5: return "Alpine"
+    if self.id == 6: return "Volcano"
+  
+  def search(self, client):
+    """ Returns whether or not the cave's egg information was retrieved. """
+    # Make sure the source is available in order to continue.
+    if self.source is None:
+      if not self.visit(client):
+        return False
+    # Add egg code and description to self.eggs if client is logged in.
+    if client.online():
+      for match in re.findall(b'<div><a href="\/get\/(.*?)"><img src="\/mystery.gif" alt="Egg"><\/a><br>(.*?)<\/div>', self.source):
+        self.eggs.append([ match[1].decode("utf-8"), match[0].decode("utf-8") ])
+    # Add egg description to self.eggs if client is not logged in.
+    else:
+      for match in re.findall(b'<img src="\/mystery.gif" alt="Egg"><\/a><br>(.*?)</div>', self.source):
+        self.eggs.append([ match[0].decode("utf-8") ])
+    return True
+  
+  def visit(self, client):
+    """ Returns whether or not the source code of the cave was retrieved. """
+    if self.id is not 0:
+      cave = client.get_session().get("http://dragcave.net/locations/" + str(self.id))
+      self.source = cave.text.encode(stdout.encoding, errors="replace")
       return True
-    else:
-      return False
+    return False
 
-""" User """
+""" Client """
 
-class User(object):
+class Client(object):
   
-  def __init__(self, username = None, password = None):
-    self.logger = logging.getLogger("Scales")
+  def __init__(self):
+    self.logger = logging.getLogger("scales")
     self.session = Session()
     self.username = None
-    if username is not None and password is not None:
-      self.login(username, password)
-    
+  
   def get_session(self):
     return self.session
   
+  def get_username(self):
+    return self.username
+  
+  def online(self):
+    return False if self.username is None else True
+  
   def login(self, username, password):
-    """
-    Returns whether or not a login attempt has succeeded.
-    
-    Args:
-      username - The username of the account.
-      password - The password of the account.
-    
-    Returns:
-      bool - True if successful, False otherwise.
-    """
+    """ Returns whether or not a login attempt has succeeded. """
     payload = { "username":username, "password":password, "submit":"Sign+in" }
     login = self.session.post("http://dragcave.net/login", data = payload)
     source = login.text.encode(stdout.encoding, errors="replace")
@@ -139,14 +115,9 @@ class User(object):
       self.username = None
       self.logger.error("'" + username + "' failed to be logged in.")
       return False
-    
+  
   def logout(self):
-    """
-    Returns whether or not a user was logged out successfully.
-    
-    Returns:
-      bool - True if successful, False otherwise.
-    """
+    """ Returns whether or not a user was logged out successfully. """
     if self.username is not None:
       self.session.get("http://dragcave.net/logout")
       self.logger.info("'" + self.username + "' has been logged out.")
@@ -155,10 +126,74 @@ class User(object):
     else:
       self.logger.warn("There is no user session active to be logged out.")
       return False
+
+""" Dragon """
+
+class Dragon(object):
+
+  def __init__(self, id = None):
+    self.logger = logging.getLogger("scales")
+    self.exists = False
+    self.source = None
+    if id is not None: self.set(id)
   
-  def online(self):
-    """ Returns whether or not the user is logged in. """
-    if self.username is not None:
+  def exists(self):
+    return self.exists
+  
+  def grab(self, expression, index = 1):
+    """ Returns results from regex of the dragon's source if it was found. """
+    if expression.decode("utf-8").split(":")[0] in self.source:
+      return re.search(expression, self.source).group(index).decode("utf-8")
+    return None
+  
+  def set(self, id, client = Client()):
+    """ Verifies a dragon based on identifier given, and grabs information. """
+    dragon = client.get_session().get("http://dragcave.net/view/" + id)
+    source = dragon.text.encode(stdout.encoding, errors="replace")
+    if b"Clicks:" in source:
+      self.exists = True
+      self.id = id
+      self.source = source
+      self.name = self.grab(b'Dragon Cave - Viewing Dragon: (.*?)<')
+      self.clicks = int(self.grab(b'Clicks:<\/b>(.*?)<').replace(",", ""))
+      self.viewsAll = int(self.grab(b'Overall views: <\/span>(.*?)<').replace(",", ""))
+      self.viewsUnique = int(self.grab(b'Unique views: <\/span>(.*?)<').replace(",", ""))
+      self.father = self.grab(b'Father:</b><a href="\/view\/(.*?)"')
+      self.gender = self.grab(b'Gender:<\/b>(.*?)<')
+      self.grew = self.grab(b'Grew up on:<\/b>(.*?)<')
+      self.hatched = self.grab(b'Hatched on:<\/b>(.*?)<')
+      self.mother = self.grab(b'Mother:<\/b><a href="\/view\/(.*?)"')
+      self.owner = self.grab(b'Owner:<\/b><a href="\/user\/(.*?)">')
+      self.breed = self.grab(b'Breed:<\/b><a href="\/dragonopedia\/(.*?)">(.*?)<', 2)
+      self.created = self.grab(b'Laid on:<\/b>(.*?)<')
+      if self.created is None: 
+        self.created = self.grab(b'Stolen on:<\/b>(.*?)<')
+    else:
+      self.exists = False
+      self.source = None
+    return self.exists
+  
+  def take(self, client = Client()):
+    """ Returns whether or not an egg was successfully taken. """
+    take = client.get_session().get("http://dragcave.net/get/" + self.id)
+    source = take.text.encode(stdout.encoding, errors="replace")
+    if b"<img src=\"/image/" + self.id + "/1\" alt=\"Adopt one today!\"/" in source:
+      self.logger.info("You managed to grab the egg (" + self.id + ").")
+      return True
+    elif b"You are already overburdened " in source:
+      self.logger.warn("You have already met the egg limit.")
+    else:
+      self.logger.warn("You were unable to grab the egg.")
+    return False
+  
+  def click(self, client = Client()):
+    """ Attempts to emulate clicking on a link to visit a dragon's page. """
+    if self.exists:
+      if client.online():
+        client.get_session().headers.update({"referer": "http://dragcave.net/user/" + client.get_username() })
+      client.get_session().get("http://dragcave.net/view/" + id)
+      client.get_session().headers.update({"referer": "http://dragcave.net/view/" + id})
+      client.get_session().get("http://dragcave.net/click/" + id)
       return True
     return False
 
@@ -166,103 +201,49 @@ class User(object):
 
 class Scroll(object):
   
-  def __init__(self):
-    return
-    
-  def exists(self, user, session = Session()):
-    """ Returns whether or not a scroll is visible. """
-    scroll = session.get("http://dragcave.net/user/" + user)
-    source = scroll.text.encode(stdout.encoding, errors="replace")
-    if "You pick up the scroll labeled " in source:
-      return True
-    else:
-      return False
+  def __init__(self, user = None, client = Client()):
+    self.exists = False
+    self.username = user
+    self.pages = 0
+    self.dragons = [ ]
+    if user is not None:
+      self.set(user, client)
   
-  def view(self, user, page, session = Session()):
-    """ Returns a scroll's source if it exists. """
-    if self.exists(user):
-      scroll = session.get("http://dragcave.net/user/" + user + "/" + str(page))
-      source = scroll.text.encode(stdout.encoding, errors="replace")
-      return source
-    else:
-      return None
-
-""" DragonCave """
-
-class DragonCave(object):
-
-  def __init__(self, file = "scales/Dragons.json"):
-    self.logger = logging.getLogger("Scales")
-    self.dragons = self.load_dragons(file)
-
+  def exists(self):
+    return self.exists
+  
+  def get_username(self):
+    return self.username
+  
   def get_dragons(self):
     return self.dragons
-    
-  def load_dragons(self, file):
-    """
-    Returns a JSON object of dragons that were loaded in successfully.
-    
-    Args:
-      file - The file that contains the JSON of relevant dragon data.
-    
-    Returns:
-      object - Data from the loaded in JSON file.
-    """
-    dragons = None
-    try:
-      dragons = load(open(file))
-    except Exception:
-      dragons = None
-      self.logger.warn("Unable to load list of dragons (" + file + ").")    
-    return dragons
   
-  def cave_code(self, name):
-    """ Returns the int identifier associated with an existing cave's name. """
-    if name == "All": return 0
-    if name == "Coast": return 1
-    if name == "Desert": return 2
-    if name == "Forest": return 3
-    if name == "Jungle": return 4
-    if name == "Alpine": return 5
-    if name == "Volcano": return 6
-    return None
+  def get_pages(self):
+    return self.pages
   
-  def cave_name(self, code):
-    """ Returns the str name associated with an existing cave's identifier. """
-    if code == 0: return "All"
-    if code == 1: return "Coast"
-    if code == 2: return "Desert"
-    if code == 3: return "Forest"
-    if code == 4: return "Jungle"
-    if code == 5: return "Alpine"
-    if code == 6: return "Volcano"
-    return None
-  
-  def cave_search(self, code, user = User()):
-    """
-    Returns the dragons that are at the specified cave.
-    
-    Args:
-      code - The code of the cave that is being searched.
-      user - The session to perform the search on.
-      
-    Returns:
-      array - Dragon breeds (and ids if online) if there are any matches.
-    """
-    source = self.cave_visit(code, user.get_session())
-    eggs = [ ]
-    if user.online():
-      for match in re.findall(b'<div><a href="\/get\/(.*?)"><img src="\/mystery.gif" alt="Egg"><\/a><br>(.*?)<\/div>', source):
-        eggs.append([ match[0].decode("utf-8"), match[1].decode("utf-8") ])
+  def set(self, user = None, client = Client()):
+    """ Returns whether or not a scroll is visible. """
+    scroll = client.get_session().get("http://dragcave.net/user/" + user)
+    source = scroll.text.encode(stdout.encoding, errors="replace")
+    if "You pick up the scroll labeled " in source:
+      self.exists = True
+      self.username = user
+      self.dragons = [ ]
+      self.pages = int(re.search(b'<b>Now viewing page 1 of (.*?)<\/b>', source).group(1).decode("utf-8"))
     else:
-      for match in re.findall(b'<img src="\/mystery.gif" alt="Egg"><\/a><br>(.*?)</div>', source):
-        eggs.append([ match[0].decode("utf-8") ])
-    return eggs
+      self.exists = False
+      self.username = None
+      self.dragons = [ ]
+      self.pages = 0
+    return self.exists
   
-  def cave_visit(self, code, session = Session()):
-    """ Returns the source code of the cave, if it exists. """
-    if code > 0 and code < 7:
-      cave = session.get("http://dragcave.net/locations/" + str(code))
-      source = cave.text.encode(stdout.encoding, errors="replace")
-      return source
-    return None
+  def view(self, client = Client()):
+    """ Returns whether or not a user's list of dragons were retrieved. """
+    if self.exists:
+      for page in range(1, self.pages + 1):
+        scroll = client.get_session().get("http://dragcave.net/user/" + self.username + "/" + str(page))
+        source = scroll.text.encode(stdout.encoding, errors="replace")
+        for match in re.findall(b'<a href="\/view\/(.*?)">', source):
+          self.dragons.append(match[0].decode("utf-8"))
+      return True
+    return False

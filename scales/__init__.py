@@ -10,15 +10,15 @@ print("""
          X88 Y88b.    888  888 888 Y8b.          X88 
      88888P'  "Y8888P "Y888888 888  "Y8888   88888P' 
                                                      
-             Dragon Cave Bot Library - Version 0.2.0 
+             Dragon Cave Bot Library - Version 0.2.1 
       """)
 
-logger = logging.getLogger("Scales")
+logger = logging.getLogger("scales")
 logger.setLevel(logging.INFO)
 
 streamHandler = logging.StreamHandler()
 streamHandler.setFormatter(
-  logging.Formatter("[%(asctime)s][%(levelname)s]: %(message)s", 
-                    "%d-%m-%Y][%H:%M:%S"))
+              logging.Formatter("[%(asctime)s][%(levelname)s]: %(message)s", 
+                                "%d-%m-%Y][%H:%M:%S"))
 
 logger.addHandler(streamHandler)
