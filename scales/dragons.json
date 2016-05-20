@@ -7,7 +7,7 @@
 		"description": "This delicately patterned egg is sitting in the sunshine.",
 		"location": [2, 3, 4]
 	},
-  "Antarean": {
+  	"Antarean": {
 		"description": "This egg is surrounded by mysterious, reflective dust.",
 		"location": [2]
 	},
@@ -75,7 +75,7 @@
 		"description": "This egg makes you feel a bit uneasy.",
 		"location": [1, 2, 3, 4, 5, 6]
 	},
-  "Celestial": {
+  	"Celestial": {
 		"description": "This translucent egg shines like starlight.",
 		"location": [1, 2, 3, 4, 5, 6]
 	},
@@ -363,10 +363,10 @@
 		"description": "This large egg is a dark crimson color.",
 		"location": [6]
 	},
-  "Sapphire": {
-    "description": "This egg looks like a beautiful blue stone.",
-    "location": [1, 2, 3, 4, 5, 6]
-  },
+  	"Sapphire": {
+    		"description": "This egg looks like a beautiful blue stone.",
+    		"location": [1, 2, 3, 4, 5, 6]
+  	},
 	"Seasonal": {
 		"description": "The markings on this egg match the weather outside.",
 		"location": [3, 5]
